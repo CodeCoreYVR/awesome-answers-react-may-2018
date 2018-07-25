@@ -24,5 +24,17 @@ const QuestionDetails = () => {
 // A self-closing component (that is a component with only
 // an opening tag) must end with `/>`. (i.e. <QuestionDetails />)
 
-ReactDOM.render(<QuestionDetails />, document.getElementById("root"));
+const AnswerDetails = () => {
+  return (
+    <div>
+      <p>This is my answer's text.</p>
+      <p>By Ulises Wisozk</p>
+      <p>
+        <strong>Created At:</strong> 1 month ago
+      </p>
+    </div>
+  );
+};
+
+ReactDOM.render(<AnswerDetails />, document.getElementById("root"));
 registerServiceWorker();
