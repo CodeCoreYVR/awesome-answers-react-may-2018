@@ -8,8 +8,19 @@ import React from "react";
 // HTML tag and will use your component function.
 const Field = props => {
   return (
-    <small>
-      <strong>{props.name}: </strong>
+    <small
+      style={{
+        color: "deepskyblue",
+        textTransform: "uppercase"
+      }}
+    >
+      <strong
+        style={{
+          color: "darkblue"
+        }}
+      >
+        {props.name}:{" "}
+      </strong>
       {props.value}
     </small>
   );
