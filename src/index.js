@@ -3,6 +3,18 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import registerServiceWorker from "./registerServiceWorker";
 
+// When writing components, you named with beginning with a capital
+// letter. Otherwise, React will interpret your component as an
+// HTML tag and will use your component function.
+const Field = props => {
+  return (
+    <small>
+      <strong>{props.name}: </strong>
+      {props.value}
+    </small>
+  );
+};
+
 // A function that returns a React Element (the value returned
 // by a call from React.createElement(...)) is a React Component.
 const QuestionDetails = props => {
@@ -12,20 +24,11 @@ const QuestionDetails = props => {
       <p>{props.body}</p>
       <p>By {props.author.full_name}</p>
       <p>
-        <small>
-          <strong>View Count: </strong>
-          {props.view_count}
-        </small>
+        <Field name="View Count" value={props.view_count} />
         {" • "}
-        <small>
-          <strong>Created At: </strong>
-          {props.created_at.toLocaleString()}
-        </small>
+        <Field name="Created At" value={props.created_at.toLocaleString()} />
         {" • "}
-        <small>
-          <strong>Updated At: </strong>
-          {props.updated_at.toLocaleString()}
-        </small>
+        <Field name="Updated At" value={props.updated_at.toLocaleString()} />
       </p>
     </div>
   );
@@ -39,9 +42,7 @@ const AnswerDetails = props => {
       <p>{props.body}</p>
       <p>By {props.author.full_name}</p>
       <p>
-        <small>
-          <strong>Created At:</strong> {props.created_at.toLocaleString()}
-        </small>
+        <Field name="Created At" value={props.created_at.toLocaleString()} />
       </p>
     </div>
   );
