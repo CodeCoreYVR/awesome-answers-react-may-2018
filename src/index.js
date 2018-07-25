@@ -33,13 +33,15 @@ const QuestionDetails = props => {
 // A self-closing component (that is a component with only
 // an opening tag) must end with `/>`. (i.e. <QuestionDetails />)
 
-const AnswerDetails = () => {
+const AnswerDetails = props => {
   return (
     <div>
-      <p>This is my answer's text.</p>
-      <p>By Ulises Wisozk</p>
+      <p>{props.body}</p>
+      <p>By {props.author.full_name}</p>
       <p>
-        <strong>Created At:</strong> 1 month ago
+        <small>
+          <strong>Created At:</strong> {props.created_at.toLocaleString()}
+        </small>
       </p>
     </div>
   );
@@ -56,7 +58,11 @@ const QuestionShowPage = () => {
         created_at={new Date()}
         updated_at={new Date()}
       />
-      <AnswerDetails />
+      <AnswerDetails
+        body="Red."
+        author={{ full_name: "Sir Lancelot" }}
+        created_at={new Date()}
+      />
     </main>
   );
 };
