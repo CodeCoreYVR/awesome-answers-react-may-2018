@@ -5,9 +5,12 @@ const AnswerDetails = props => {
   return (
     <div>
       <p>{props.body}</p>
-      <p>By {props.author.full_name}</p>
+      <p>By {props.author.first_name}</p>
       <p>
-        <Field name="Created At" value={props.created_at.toLocaleString()} />
+        <Field
+          name="Created At"
+          value={new Date(props.created_at).toLocaleString()}
+        />
       </p>
     </div>
   );

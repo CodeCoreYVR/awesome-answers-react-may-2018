@@ -1,8 +1,11 @@
 import React from "react";
 import QuestionDetails from "./QuestionDetails";
 import AnswerDetails from "./AnswerDetails";
+import AnswerList from "./AnswerList";
 
-const QuestionShowPage = () => {
+const QuestionShowPage = props => {
+  const { question } = props;
+
   return (
     <main>
       <QuestionDetails
@@ -13,11 +16,8 @@ const QuestionShowPage = () => {
         created_at={new Date()}
         updated_at={new Date()}
       />
-      <AnswerDetails
-        body="Red."
-        author={{ full_name: "Sir Lancelot" }}
-        created_at={new Date()}
-      />
+      <h2>Answers</h2>
+      <AnswerList answers={question.answers} />
     </main>
   );
 };
