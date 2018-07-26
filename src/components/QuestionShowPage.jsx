@@ -22,11 +22,27 @@ class QuestionShowPage extends Component {
     };
 
     this.deleteQuestion = this.deleteQuestion.bind(this);
+    this.deleteAnswer = this.deleteAnswer.bind(this);
   }
 
   deleteQuestion() {
     this.setState({
       question: undefined
+    });
+  }
+
+  deleteAnswer(id) {
+    // Inside AnswerDetails, we're passing the `id` from
+    // the props which would preserve the type.
+    // Therefore, we don't need to `parseInt`.
+    const { question } = this.state;
+    const { answers = [] } = question;
+
+    this.setState({
+      question: {
+        ...question,
+        answers: answers.filter(answer => answer.id !== id)
+      }
     });
   }
 
@@ -46,7 +62,10 @@ class QuestionShowPage extends Component {
         <QuestionDetails {...question} />
         <button onClick={this.deleteQuestion}>Delete</button>
         <h2>Answers</h2>
-        <AnswerList answers={question.answers} />
+        <AnswerList
+          onAnswerDeleteClick={this.deleteAnswer}
+          answers={question.answers}
+        />
       </main>
     );
   }

@@ -2,7 +2,7 @@ import React from "react";
 import AnswerDetails from "./AnswerDetails";
 
 const AnswerList = props => {
-  const { answers = [] } = props;
+  const { answers = [], onAnswerDeleteClick = () => {} } = props;
 
   return (
     <ul>
@@ -13,7 +13,7 @@ const AnswerList = props => {
             author={answer.author}
             created_at={answer.created_at}
           /> */}
-          <AnswerDetails {...answer} />
+          <AnswerDetails onDeleteClick={onAnswerDeleteClick} {...answer} />
         </li>
       ))}
     </ul>
