@@ -20,14 +20,31 @@ class QuestionShowPage extends Component {
     this.state = {
       question: props.question
     };
+
+    this.deleteQuestion = this.deleteQuestion.bind(this);
+  }
+
+  deleteQuestion() {
+    this.setState({
+      question: undefined
+    });
   }
 
   render() {
     const { question } = this.state;
 
+    if (!question) {
+      return (
+        <main>
+          <h2>Question doesn't exist</h2>
+        </main>
+      );
+    }
+
     return (
       <main>
         <QuestionDetails {...question} />
+        <button onClick={this.deleteQuestion}>Delete</button>
         <h2>Answers</h2>
         <AnswerList answers={question.answers} />
       </main>
