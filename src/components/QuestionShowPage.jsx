@@ -7,7 +7,6 @@
 // export class Component { ... }
 import React, { Component } from "react";
 import QuestionDetails from "./QuestionDetails";
-import AnswerDetails from "./AnswerDetails";
 import AnswerList from "./AnswerList";
 
 class QuestionShowPage extends Component {

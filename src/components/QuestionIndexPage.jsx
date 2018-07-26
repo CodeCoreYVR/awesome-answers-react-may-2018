@@ -7,6 +7,40 @@ class QuestionIndexPage extends Component {
     this.state = {
       questions: props.questions || []
     };
+
+    // For methods that we pass as callbacks to event listeners
+    // or anything else, that method will no longer be owned by
+    // instance of our component which will make `this` undefined
+    // at the time it is called.
+
+    // To permanently set `this` to an object of choice, call the
+    // `.bind(<an-object>)` on a function. This will create a new
+    // version of the function where this set to <an-object>
+    // and can never be changed again.
+    this.deleteQuestion = this.deleteQuestion.bind(this);
+  }
+
+  deleteQuestion(event) {
+    const { currentTarget } = event;
+    // When you get a value from HTML attributes, it will
+    // usually be a string. Make sure to parse into the type
+    // that you need before using it.
+    const questionId = parseInt(currentTarget.dataset.id, 10);
+
+    // Never directly assign to the state.
+    // this.state = { question: [] } // !!BAD 😡
+    // To do any changes to the state, you must use the
+    // this.setState(...) method.
+
+    console.log("Type of question id", typeof questionId);
+
+    const { questions } = this.state;
+
+    this.setState({
+      questions: questions.filter(question => question.id !== questionId)
+    });
+
+    // console.log("The id is", questionId);
   }
 
   render() {
@@ -22,10 +56,19 @@ class QuestionIndexPage extends Component {
         <h1>Questions</h1>
         <ul style={{ padding: 0, listStyle: "none" }}>
           {questions.map((question, index) => (
-            <li key={question.id}>
+            <li style={{ marginBottom: "1rem" }} key={question.id}>
               <span>{new Date(question.created_at).toLocaleDateString()}</span>
               {" • "}
-              <a href="#">{question.title}</a>
+              <a href="#not-used">{question.title}</a> <br />
+              {/*
+              document
+                .querySelector("button")
+                .addEventListener("click", () => console.log("Button clicked!"))
+              */}
+              {/* <button onClick={e => console.log(e.target, "was clicked!")}> */}
+              <button data-id={question.id} onClick={this.deleteQuestion}>
+                Delete
+              </button>
             </li>
           ))}
         </ul>
