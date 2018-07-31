@@ -7,3 +7,19 @@ body {
 main {
   margin: 0 2rem;
 }
+
+.NavBar {
+  display: flex;
+  background-color: seashell;
+}
+
+.NavBar a {
+  color: steelblue;
+  text-decoration: none;
+  padding: 1rem;
+}
+
+.NavBar a.active {
+  color: seashell;
+  background-color: steelblue;
+}
