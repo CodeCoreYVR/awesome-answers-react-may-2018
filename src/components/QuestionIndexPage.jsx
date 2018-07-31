@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Question from "../requests/question";
+import { Link } from "react-router-dom";
 
 class QuestionIndexPage extends Component {
   constructor(props) {
@@ -80,7 +81,8 @@ class QuestionIndexPage extends Component {
             <li style={{ marginBottom: "1rem" }} key={question.id}>
               <span>{new Date(question.created_at).toLocaleDateString()}</span>
               {" • "}
-              <a href="#not-used">{question.title}</a> <br />
+              <Link to={`/questions/${question.id}`}>{question.title}</Link>
+              <br />
               {/*
               document
                 .querySelector("button")

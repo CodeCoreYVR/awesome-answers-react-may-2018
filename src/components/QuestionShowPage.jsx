@@ -28,7 +28,14 @@ class QuestionShowPage extends Component {
   }
 
   componentDidMount() {
-    Question.one(606)
+    // react-router-dom will add 3 props to any component
+    // it renders:
+    // https://reacttraining.com/react-router/web/api/history
+    // console.log(this.props);
+
+    const questionId = this.props.match.params.id;
+
+    Question.one(questionId)
       .then(question => {
         console.log(question);
 
