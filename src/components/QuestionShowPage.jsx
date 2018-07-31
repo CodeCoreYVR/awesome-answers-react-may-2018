@@ -8,6 +8,7 @@
 import React, { Component } from "react";
 import QuestionDetails from "./QuestionDetails";
 import AnswerList from "./AnswerList";
+import Question from "../requests/question";
 
 class QuestionShowPage extends Component {
   constructor(props) {
@@ -18,11 +19,24 @@ class QuestionShowPage extends Component {
     super(props);
 
     this.state = {
-      question: props.question
+      loading: true,
+      question: undefined
     };
 
     this.deleteQuestion = this.deleteQuestion.bind(this);
     this.deleteAnswer = this.deleteAnswer.bind(this);
+  }
+
+  componentDidMount() {
+    Question.one(606)
+      .then(question => {
+        console.log(question);
+
+        this.setState({ loading: false, question: question });
+      })
+      .catch(() => {
+        this.setState({ loading: false });
+      });
   }
 
   deleteQuestion() {
@@ -47,7 +61,15 @@ class QuestionShowPage extends Component {
   }
 
   render() {
-    const { question } = this.state;
+    const { loading, question } = this.state;
+
+    if (loading) {
+      return (
+        <main>
+          <h2>Loading...</h2>
+        </main>
+      );
+    }
 
     if (!question) {
       return (
