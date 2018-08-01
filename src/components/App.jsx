@@ -70,7 +70,7 @@ class App extends Component {
               isAuth={currentUser}
               path="/questions/new"
               exact
-              component={QuestionNewPage}
+              render={props => <QuestionNewPage {...props} />}
             />
             <Route path="/questions/:id" component={QuestionShowPage} />
             <Route
