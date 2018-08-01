@@ -1,6 +1,4 @@
-const HOST = "localhost:3000";
-const API_BASE = "/api/v1";
-const BASE_URL = `http://${HOST}${API_BASE}`;
+import { BASE_URL } from "./config";
 
 const Question = {
   all() {

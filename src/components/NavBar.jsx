@@ -14,6 +14,9 @@ const NavBar = props => {
       <NavLink exact to="/questions">
         Questions
       </NavLink>
+      <NavLink className="supports-classname" exact to="/sign_in">
+        Sign In
+      </NavLink>
     </nav>
   );
 };
