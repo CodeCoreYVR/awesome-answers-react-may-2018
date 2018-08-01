@@ -29,6 +29,14 @@ class SignInPage extends Component {
           errorMessage: "Invalid username or password"
         });
       } else {
+        // Here we're using a callback prop to alert a parent
+        // component that a sign was successful.
+        // Our App component will be able to change its state
+        // in response to this storing the user information
+        // we need.
+        const { onSignIn = () => {} } = this.props;
+        onSignIn();
+
         // SignInPage gets access to the "history" prop,
         // because it is being rendered by a Route component.
         // (i.e. <Route path="/" component={SignInPage} />)
