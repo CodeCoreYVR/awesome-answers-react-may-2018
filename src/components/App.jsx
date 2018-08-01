@@ -3,14 +3,15 @@ import React, { Component } from "react";
 // by using the `as` keyword as shown below:
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+import AuthRoute from "./AuthRoute";
 import NavBar from "./NavBar";
 import QuestionIndexPage from "./QuestionIndexPage";
-import QuestionShowPage from "./QuestionShowPage";
 import QuestionNewPage from "./QuestionNewPage";
-import WelcomePage from "./WelcomePage";
+import QuestionShowPage from "./QuestionShowPage";
+import Session from "../requests/session";
 import SignInPage from "./SignInPage";
 import User from "../requests/user";
-import Session from "../requests/session";
+import WelcomePage from "./WelcomePage";
 
 class App extends Component {
   constructor(props) {
@@ -65,7 +66,12 @@ class App extends Component {
           <Switch>
             <Route path="/" exact component={WelcomePage} />
             <Route path="/questions" exact component={QuestionIndexPage} />
-            <Route path="/questions/new" exact component={QuestionNewPage} />
+            <AuthRoute
+              isAuth={currentUser}
+              path="/questions/new"
+              exact
+              component={QuestionNewPage}
+            />
             <Route path="/questions/:id" component={QuestionShowPage} />
             <Route
               path="/sign_in"
@@ -73,6 +79,9 @@ class App extends Component {
                 <SignInPage {...props} onSignIn={this.getUser} />
               )}
             />
+            {/* 
+              <AuthRoute path="/questions/new" isAuth={false} component={QuestionNewPage} />
+             */}
           </Switch>
         </div>
       </Router>
