@@ -10,6 +10,7 @@ import QuestionNewPage from "./QuestionNewPage";
 import QuestionShowPage from "./QuestionShowPage";
 import Session from "../requests/session";
 import SignInPage from "./SignInPage";
+import NotFoundPage from "./NotFoundPage";
 import User from "../requests/user";
 import WelcomePage from "./WelcomePage";
 
@@ -82,6 +83,7 @@ class App extends Component {
             {/* 
               <AuthRoute path="/questions/new" isAuth={false} component={QuestionNewPage} />
              */}
+            <Route component={NotFoundPage} />
           </Switch>
         </div>
       </Router>
